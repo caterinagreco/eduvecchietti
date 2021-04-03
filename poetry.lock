@@ -1,0 +1,45 @@
+[[package]]
+name = "mido"
+version = "1.2.9"
+description = "MIDI Objects for Python"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+dev = ["check-manifest (>=0.35)", "flake8 (>=3.4.1)", "pytest (>=3.2.2)", "sphinx (>=1.6.3)", "tox (>=2.8.2)"]
+ports = ["python-rtmidi (>=1.1.0)"]
+
+[[package]]
+name = "pyo"
+version = "1.0.3"
+description = "Python module to build digital signal processing program."
+category = "main"
+optional = false
+python-versions = ">=3.6, <4"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.8"
+content-hash = "8a8df853b05b19e80fe44f5171c215dc9cc01718471455e2e62b81afe7b78c1f"
+
+[metadata.files]
+mido = [
+    {file = "mido-1.2.9-py2.py3-none-any.whl", hash = "sha256:fc6364efa028c8405166f63e6a83cbc6c17aaeac2c28680abe64ae48703a89dd"},
+    {file = "mido-1.2.9.tar.gz", hash = "sha256:c4a7d5528fefa3d3dcaa2056d4bc873e2c96a395658d15af5a89c8c3fa7c7acc"},
+]
+pyo = [
+    {file = "pyo-1.0.3-cp36-cp36m-macosx_10_12_x86_64.whl", hash = "sha256:d03aed90a919bcecbf62aabba38ebd02feb54eb42651006fc91cbcfdc5f6433b"},
+    {file = "pyo-1.0.3-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:48868ca9351d4718e8e9d0c4e323912d6728988690e7727505b18dd1de4da7ef"},
+    {file = "pyo-1.0.3-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:b8d0a106256f812e36ca5139aab7d06ea24f6b5ffd9db45ff637a1187cd4f354"},
+    {file = "pyo-1.0.3-cp36-cp36m-win_amd64.whl", hash = "sha256:7f8d57232f47e47136c00ea6fb8dd0f84ee3e044b3d50fd9748d6c927cc20201"},
+    {file = "pyo-1.0.3-cp37-cp37m-macosx_10_12_x86_64.whl", hash = "sha256:724751db814bb99368c1b198c8cc0e8a77ecc231cb23ea4019b335a4463364f9"},
+    {file = "pyo-1.0.3-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:f105eff2535cbd63550e088515901a49d12e8a9e5195c408e72fc1bce32fe4a2"},
+    {file = "pyo-1.0.3-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:d779c6af6c265cbaf09fd909b9a7899916d811575c69ba7462f54482148fd005"},
+    {file = "pyo-1.0.3-cp37-cp37m-win_amd64.whl", hash = "sha256:6b458e0aba99e2a493a619f01e8d60a0a8880efeb739f46f6d67814fba888f4f"},
+    {file = "pyo-1.0.3-cp38-cp38-macosx_10_12_x86_64.whl", hash = "sha256:7448bff69f4ddc24b57bfe27e827eabe5fee91b2e97a5da338d23c5857b8e3a2"},
+    {file = "pyo-1.0.3-cp38-cp38-manylinux1_i686.whl", hash = "sha256:0c02842629b59a22cf497df82b9921bae844b498713d8956ad1dab1e14484b8a"},
+    {file = "pyo-1.0.3-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:731d461d3547da5e43a5e814fe030834ab0fc9fd4e18cef0cfb11db96a89866b"},
+    {file = "pyo-1.0.3-cp38-cp38-win_amd64.whl", hash = "sha256:1a7df3f3ba6cdea1d016fdc271efc61e72dd645cb90272189290e82532b9ffe4"},
+    {file = "pyo-1.0.3.tar.gz", hash = "sha256:f0d187a78e3ab9f10275853a22b6a08094aeed4e0c2adee8697734373aa8dd1f"},
+]
