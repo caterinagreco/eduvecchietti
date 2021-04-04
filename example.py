@@ -6,7 +6,7 @@ import platform
 
 def main():
     audio = 'coreaudio' if platform.system() == 'Darwin' else 'portaudio'
-    s = pyo.Server(audio=audio).boot().start()
+    s = pyo.Server(audio=audio, duplex=0).boot().start()
 
     # A little audio synth to play the MIDI events.
     mid = pyo.Notein()
