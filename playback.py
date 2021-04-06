@@ -7,7 +7,7 @@ from gpiozero import Button, LED
 
 
 def find_existing_channels(m: MidiFile) -> List[int]:
-    return [track[0].channel for track in m.tracks]
+    return [0, 1]
 
 
 def get_playing_channels() -> List[int]:
@@ -34,10 +34,10 @@ def main():
     for i, message in enumerate(midi.play()):
         if button.is_pressed:
             playing = get_playing_channels()
-            if playing not in existing_channels:
-                led.off()
-            else:
+            if all([c in existing_channels for c in playing]):
                 led.on()
+            else:
+                led.off()
             print(f'Randomly playing channels {playing}')
         if message.channel in playing or not message.type == 'note_on':
             if message.type == 'note_on':
