@@ -12,16 +12,7 @@ def find_existing_channels(midi: MidiFile) -> Set[int]:
     :param midi: the MIDI File to operate on.
     :return: The channels present in the MIDI File.
     """
-    existing_channels = []
-    for track in midi.tracks:
-        for msg in track:
-            # Meta messages do not have channels
-            if not msg.is_meta:
-                existing_channels.append(msg.channel)
-                # Assuming all channels are the same for each track
-                break
-    # Converting to set in case multiple tracks play on the same channel
-    return set(existing_channels)
+    return set(msg.channel for msg in midi if not msg.is_meta)
 
 
 def get_channel_switcher(container: List[int]) -> Callable:
