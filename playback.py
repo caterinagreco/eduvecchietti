@@ -5,6 +5,8 @@ import random
 from mido import MidiFile
 from gpiozero import Button, LED
 
+from game.synth import Synth
+
 
 def find_existing_channels(midi: MidiFile) -> Set[int]:
     """Computes the channels used by a MIDI File
@@ -59,7 +61,7 @@ def chain_functions(*funcs: Callable) -> Callable:
     return chained
 
 
-def play_with_synth(midi: MidiFile, fs: fluidsynth.Synth, chosen_channels: List[int]):
+def play_with_synth(midi: MidiFile, fs: Synth, chosen_channels: List[int]):
     """Plays a MIDI File through FluidSynth, with the option to modify playing channels.
 
     :param midi: The MIDI File to play.
@@ -70,22 +72,15 @@ def play_with_synth(midi: MidiFile, fs: fluidsynth.Synth, chosen_channels: List[
     print("Playing...")
     for message in midi.play():
         if message.channel in chosen_channels or not message.type == 'note_on':
-            if message.type == 'note_on':
-                fs.noteon(message.channel, message.note, message.velocity)
-            if message.type == 'note_off':
-                fs.noteoff(message.channel, message.note)
+            fs.play_midi_message(msg=message)
 
 
-def get_synth() -> fluidsynth.Synth:
+def get_synth() -> Synth:
     """Builds a simple Synth with FluidSynth
 
     :return: None
     """
-    fs = fluidsynth.Synth(samplerate=48000, gain=0.8)
-    fs.start("alsa")
-    sfid = fs.sfload("/usr/share/sounds/sf2/FluidR3_GM.sf2", 1)
-    fs.program_select(0, sfid, 0, 0)
-    return fs
+    return Synth("/usr/share/sounds/sf2/FluidR3_GM.sf2")
 
 
 def load_midi(filename: str) -> Tuple[MidiFile, Set[int]]:
