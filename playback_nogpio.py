@@ -9,7 +9,7 @@ def main():
     synth = Synth("/Users/caterinagreco/Desktop/PROGETTO INF./soundfonts/TimGM6mb.sf2", 'portaudio')
 
     # Load the MIDI File
-    midi = MidiFile(filename="midi/tu_vo_fa_lamericano.mid")
+    midi = MidiFile(filename="midi/Carosone_fix.mid")
 
     # Play the MIDI Song
     player = Player(synth, midi)

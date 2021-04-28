@@ -1,0 +1,25 @@
+{
+  "hall": {
+    "bass": 2,
+    "piano": 3,
+    "string_ensamble": 4,
+    "brass_section": 22,
+    "clarinet": 26,
+    "battery": 27
+  },
+  "neopixel": 21,
+  "songs_by_level": {
+    "1": ["midi/nel_blu_dipinto_di_blu.mid"],
+    "2": ["midi/fly_me_to_the_moon.mid", "midi/azzurro.mid"],
+    "3": ["midi/tu_vo_fa_lamericano.mid"]
+  },
+  "encoder": {
+    "CLK": 17,
+    "DT": 18
+  },
+  "button": 6,
+  "synth": {
+    "soundfont": "/Users/caterinagreco/Desktop/PROGETTO INF./soundfonts/TimGM6mb.sf2",
+    "driver": "portaudio"
+  }
+}
