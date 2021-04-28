@@ -27,6 +27,5 @@ class Synth:
         else:
             print(f'Message of type {msg.type} not recognized!')
 
-
-
-
+    def reset(self) -> None:
+        self.fs.system_reset()
