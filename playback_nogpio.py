@@ -15,8 +15,7 @@ def main():
     player = Player(synth, midi)
     player.play_demo()
 
-    for channel in player.get_existing_channels():
-        player.activate_channel(channel)
+    player.active_channels = player.get_existing_channels()
     player.play()
 
     print("Done!")

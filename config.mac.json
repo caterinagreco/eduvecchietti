@@ -7,6 +7,14 @@
     "clarinet": 26,
     "battery": 27
   },
+  "channel":{
+    "bass": 0,
+    "piano": 1,
+    "string_ensamble": 3,
+    "brass_section": 4,
+    "clarinet": 5,
+    "battery": 9
+  },
   "neopixel": 21,
   "songs_by_level": {
     "1": ["midi/nel_blu_dipinto_di_blu.mid"],

@@ -21,9 +21,6 @@ class Synth:
             self.fs.program_change(msg.channel, msg.program)
         elif msg.type == 'pitchwheel':
             self.fs.pitch_bend(msg.channel, msg.pitch)
-        elif msg.type == 'aftertouch':
-            # TODO: AfterTouch exists in fluidsynth as Channel Pressure but seems not implemented in pyFluidSynth
-            print('AfterTouch missing!')
         else:
             print(f'Message of type {msg.type} not recognized!')
 

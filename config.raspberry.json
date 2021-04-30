@@ -4,7 +4,7 @@
     "piano": 3,
     "string_ensamble": 4,
     "brass_section": 22,
-    "clarinet": 26,
+    "woods": 26,
     "battery": 27
   },
   "neopixel": 21,

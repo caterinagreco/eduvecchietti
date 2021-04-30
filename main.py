@@ -8,6 +8,5 @@ if __name__ == "__main__":
         config = json.load(f)
     game = Game(config=config)
     game.configure()
-    for channel in game.player.get_existing_channels():
-        game.player.activate_channel(channel)
+    game.player.active_channels = game.player.get_existing_channels()
     game.start()

@@ -1,4 +1,4 @@
-from typing import Set
+from typing import List
 
 from mido import MidiFile
 
@@ -10,25 +10,20 @@ class Player:
     def __init__(self, synth: Synth, song: MidiFile):
         self.synth = synth
         self.song = song
-        self.active_channels = set()
+        self.active_channels = [False] * 16
 
-    def get_existing_channels(self) -> Set[int]:
+    def get_existing_channels(self) -> List[bool]:
         """Computes the channels used by the player's MIDI File
 
         :return: The channels present in the player's MIDI File.
         """
-        return set(msg.channel for msg in self.song if not msg.is_meta)
-
-    def activate_channel(self, channel: int) -> None:
-        self.active_channels.add(channel)
-
-    def deactivate_channel(self, channel: int) -> None:
-        self.active_channels.remove(channel)
+        existing_channels = set(msg.channel for msg in self.song if not msg.is_meta)
+        return [i in existing_channels for i in range(16)]
 
     def play(self) -> None:
         print("Playing...")
         for message in self.song.play():
-            if message.channel in self.active_channels or not message.type == 'note_on':
+            if self.active_channels[message.channel] or not message.type == 'note_on':
                 self.synth.play_midi_message(msg=message)
 
     def play_demo(self) -> None:
