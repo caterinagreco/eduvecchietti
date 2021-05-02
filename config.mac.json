@@ -4,7 +4,7 @@
     "piano": 3,
     "string_ensamble": 4,
     "brass_section": 22,
-    "clarinet": 26,
+    "woods": 26,
     "battery": 27
   },
   "channel":{
@@ -12,7 +12,7 @@
     "piano": 1,
     "string_ensamble": 3,
     "brass_section": 4,
-    "clarinet": 5,
+    "woods": 5,
     "battery": 9
   },
   "neopixel": 21,

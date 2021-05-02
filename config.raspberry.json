@@ -1,12 +1,20 @@
 {
   "hall": {
-    "bass": 2,
-    "piano": 3,
-    "string_ensamble": 4,
+    "bass": 5,
+    "piano": 6,
+    "string_ensamble": 16,
     "brass_section": 22,
     "woods": 26,
     "battery": 27
   },
+  "channel": {
+    "bass": 0,
+    "piano": 1,
+    "string_ensamble": 3,
+    "brass_section": 4,
+    "woods": 5,
+    "battery": 9
+  }
   "neopixel": 21,
   "songs_by_level": {
     "1": ["midi/nel_blu_dipinto_di_blu.mid"],
@@ -17,7 +25,7 @@
     "CLK": 17,
     "DT": 18
   },
-  "button": 6,
+  "button": 24,
   "synth": {
     "soundfont": "/usr/share/sounds/sf2/TimGM6mb.sf2",
     "driver": "alsa"
