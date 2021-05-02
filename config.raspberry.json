@@ -14,7 +14,7 @@
     "brass_section": 4,
     "woods": 5,
     "battery": 9
-  }
+  },
   "neopixel": 21,
   "songs_by_level": {
     "1": ["midi/nel_blu_dipinto_di_blu.mid"],
