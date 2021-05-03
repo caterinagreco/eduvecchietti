@@ -2,7 +2,7 @@
   "hall": {
     "bass": 5,
     "piano": 6,
-    "string_ensamble": 16,
+    "string_ensamble": 17,
     "brass_section": 22,
     "woods": 26,
     "battery": 27
@@ -15,21 +15,19 @@
     "woods": 5,
     "battery": 9
   },
-  "led_strip": {
-    "pin": 21,
-    "n": 6,
-    "brightness": 0.8
+  "led": {
+    "bass": [14, 15],
+    "piano": [23, 24],
+    "string_ensamble": [25, 8],
+    "brass_section": [7, 1],
+    "woods": [12, 16],
+    "battery": [20, 21]
   },
   "songs_by_level": {
     "1": ["midi/nel_blu_dipinto_di_blu.mid"],
     "2": ["midi/fly_me_to_the_moon.mid", "midi/azzurro.mid"],
     "3": ["midi/americano.mid"]
   },
-  "encoder": {
-    "CLK": 17,
-    "DT": 18
-  },
-  "button": 24,
   "synth": {
     "soundfont": "/usr/share/sounds/sf2/TimGM6mb.sf2",
     "driver": "alsa"
