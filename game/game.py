@@ -25,7 +25,7 @@ class Game:
             player=self.player,
             hall_config=self.config["hall"],
             channel_config=self.config["channel"],
-            neopixel=self.config["neopixel"]
+            led_config=self.config["led_strip"]
         )
         self.is_configured = True
 

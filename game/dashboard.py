@@ -2,15 +2,21 @@ from typing import Dict, Callable
 
 from gpiozero import DigitalInputDevice
 
+from game.led_strip import LedStrip
 from game.player import Player
 
 
 class Dashboard:
 
-    def __init__(self, player: Player, hall_config: Dict[str, int], channel_config: Dict[str, int], neopixel: int):
+    def __init__(
+            self,
+            player: Player,
+            hall_config: Dict[str, int],
+            channel_config: Dict[str, int],
+            led_config: Dict[str, int]):
         self.player = player
         self.channel_config = channel_config
-        self.neopixel = neopixel
+        self.led_strip = LedStrip(led_config=led_config, channels=channel_config)
         self.hall = {k: DigitalInputDevice(pin=v, pull_up=True) for k, v in hall_config.items()}
 
     def __existing_hall_on(self, channel: int) -> Callable:

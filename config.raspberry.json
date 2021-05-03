@@ -15,7 +15,11 @@
     "woods": 5,
     "battery": 9
   },
-  "neopixel": 21,
+  "led_strip": {
+    "pin": 21,
+    "n": 6,
+    "brightness": 0.8
+  },
   "songs_by_level": {
     "1": ["midi/nel_blu_dipinto_di_blu.mid"],
     "2": ["midi/fly_me_to_the_moon.mid", "midi/azzurro.mid"],

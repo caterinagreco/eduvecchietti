@@ -1,8 +1,8 @@
 {
   "hall": {
-    "bass": 2,
-    "piano": 3,
-    "string_ensamble": 4,
+    "bass": 5,
+    "piano": 6,
+    "string_ensamble": 16,
     "brass_section": 22,
     "woods": 26,
     "battery": 27
@@ -15,7 +15,11 @@
     "woods": 5,
     "battery": 9
   },
-  "neopixel": 21,
+  "led_strip": {
+    "pin": 21,
+    "n": 6,
+    "brightness": 0.8
+  },
   "songs_by_level": {
     "1": ["midi/nel_blu_dipinto_di_blu.mid"],
     "2": ["midi/fly_me_to_the_moon.mid", "midi/azzurro.mid"],
@@ -25,7 +29,7 @@
     "CLK": 17,
     "DT": 18
   },
-  "button": 6,
+  "button": 24,
   "synth": {
     "soundfont": "/Users/caterinagreco/Desktop/PROGETTO INF./soundfonts/TimGM6mb.sf2",
     "driver": "portaudio"
