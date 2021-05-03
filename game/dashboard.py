@@ -17,7 +17,7 @@ class Dashboard:
         self.channel_config = channel_config
         self.hall = {k: DigitalInputDevice(pin=v, pull_up=True) for k, v in hall_config.items()}
         self.led = {
-            k: RGBLED(red=v[0], green=v[1], blue=4, active_high=False, pwm=False)
+            k: RGBLED(red=v[0], green=v[1], blue=v[2], active_high=False, pwm=False)
             for k, v in led_config.items()
         }
 

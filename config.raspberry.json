@@ -16,12 +16,12 @@
     "battery": 9
   },
   "led": {
-    "bass": [14, 15],
-    "piano": [23, 24],
-    "string_ensamble": [25, 8],
-    "brass_section": [7, 1],
-    "woods": [12, 16],
-    "battery": [20, 21]
+    "bass": [14, 15, 2],
+    "piano": [23, 24, 3],
+    "string_ensamble": [25, 8, 4],
+    "brass_section": [7, 1, 10],
+    "woods": [12, 16, 9],
+    "battery": [20, 21, 11]
   },
   "songs_by_level": {
     "1": ["midi/nel_blu_dipinto_di_blu.mid"],
