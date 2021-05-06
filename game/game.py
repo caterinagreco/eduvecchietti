@@ -32,6 +32,8 @@ class Game:
     def start(self) -> None:
         if not self.is_configured:
             self.configure()
+        self.dashboard.led_strip.animation()
         self.player.play_demo()
+        self.dashboard.led_strip.animation()
         self.dashboard.hook_sensors()
         self.player.play()

@@ -19,38 +19,36 @@ class Dashboard:
         self.led_strip = LedStrip(led_config=led_config, channels=channel_config)
         self.hall = {k: DigitalInputDevice(pin=v, pull_up=True) for k, v in hall_config.items()}
 
-    def __existing_hall_on(self, channel: int) -> Callable:
+    def __existing_hall_on(self, channel: int, instrument: str) -> Callable:
         def action():
             self.player.active_channels[channel] = True
-            # TODO green led on
+            self.led_strip.positive_feedback_on(instrument=instrument)
         return action
 
-    def __existing_hall_off(self, channel: int) -> Callable:
+    def __existing_hall_off(self, channel: int, instrument: str) -> Callable:
         def action():
             self.player.active_channels[channel] = False
-            # TODO green led off
+            self.led_strip.feedback_off(instrument=instrument)
         return action
 
-    def __non_existing_hall_on(self, channel: int) -> Callable:
+    def __non_existing_hall_on(self, instrument: str) -> Callable:
         def action():
-            # TODO red led on
-            pass
+            self.led_strip.negative_feedback_on(instrument=instrument)
         return action
 
-    def __non_existing_hall_off(self, channel: int) -> Callable:
+    def __non_existing_hall_off(self, instrument: str) -> Callable:
         def action():
-            # TODO red led off
-            pass
+            self.led_strip.feedback_off(instrument=instrument)
         return action
 
     def hook_sensors(self) -> None:
         existing_channels = self.player.get_existing_channels()
-        for k in self.hall:
-            channel = self.channel_config[k]
+        for instrument in self.hall:
+            channel = self.channel_config[instrument]
             if existing_channels[channel]:
-                self.hall[k].when_activated = self.__existing_hall_on(channel)
-                self.hall[k].when_deactivated = self.__existing_hall_off(channel)
+                self.hall[instrument].when_activated = self.__existing_hall_on(channel, instrument)
+                self.hall[instrument].when_deactivated = self.__existing_hall_off(channel, instrument)
             else:
-                self.hall[k].when_activated = self.__non_existing_hall_on(channel)
-                self.hall[k].when_deactivated = self.__non_existing_hall_off(channel)
+                self.hall[instrument].when_activated = self.__non_existing_hall_on(instrument)
+                self.hall[instrument].when_deactivated = self.__non_existing_hall_off(instrument)
 

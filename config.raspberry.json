@@ -17,7 +17,7 @@
   },
   "led_strip": {
     "pin": 21,
-    "n": 6,
+    "n": 36,
     "brightness": 0.8
   },
   "songs_by_level": {
