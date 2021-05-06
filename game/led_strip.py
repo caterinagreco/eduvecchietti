@@ -2,6 +2,7 @@ from time import sleep
 from typing import Dict, Tuple
 
 import neopixel
+from digitalio import Pin
 
 
 class LedStrip:
@@ -13,7 +14,7 @@ class LedStrip:
 
     def __init__(self, led_config: Dict[str, int], channels: Dict[str, int]):
         self.led_strip = neopixel.NeoPixel(
-            pin=led_config["pin"],
+            pin=Pin(led_config["pin"]),
             n=led_config["n"],
             bpp=3,
             brightness=led_config["brightness"],
@@ -37,7 +38,7 @@ class LedStrip:
                 sleep(duration)
 
     def animation(self) -> None:
-        self._blink(color=self._WHITE, times=2, duration=1)
+        self._blink(color=self._WHITE, times=2synth.png, duration=1)
 
     def _set_instrument(self, instrument: str, color: Tuple[int, int, int]):
         for pixel in self.instr_to_led[instrument]:
