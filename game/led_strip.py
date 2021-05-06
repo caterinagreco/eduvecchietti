@@ -38,7 +38,7 @@ class LedStrip:
                 sleep(duration)
 
     def animation(self) -> None:
-        self._blink(color=self._WHITE, times=2synth.png, duration=1)
+        self._blink(color=self._WHITE, times=2, duration=1)
 
     def _set_instrument(self, instrument: str, color: Tuple[int, int, int]):
         for pixel in self.instr_to_led[instrument]:
