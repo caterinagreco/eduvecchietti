@@ -1,8 +1,8 @@
 from time import sleep
 from typing import Dict, Tuple
 
-import neopixel
-from digitalio import Pin
+import neopixel_spi as neopixel
+from busio import SPI
 
 
 class LedStrip:
@@ -13,8 +13,8 @@ class LedStrip:
     _OFF = (0, 0, 0)
 
     def __init__(self, led_config: Dict[str, int], channels: Dict[str, int]):
-        self.led_strip = neopixel.NeoPixel(
-            pin=Pin(led_config["pin"]),
+        self.led_strip = neopixel.NeoPixel_SPI(
+            spi=SPI(21, MOSI=led_config["pin"], MISO=19),
             n=led_config["n"],
             bpp=3,
             brightness=led_config["brightness"],

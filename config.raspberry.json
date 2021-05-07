@@ -16,7 +16,7 @@
     "battery": 9
   },
   "led_strip": {
-    "pin": 21,
+    "pin": 20,
     "n": 36,
     "brightness": 0.8
   },
