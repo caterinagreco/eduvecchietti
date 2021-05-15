@@ -2,43 +2,43 @@ from typing import Dict, Callable
 
 from gpiozero import DigitalInputDevice
 
-from game.led_strip import LedStrip
 from game.player import Player
+import serial
+
+ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 
 
 class Dashboard:
-
     def __init__(
             self,
             player: Player,
             hall_config: Dict[str, int],
-            channel_config: Dict[str, int],
-            led_config: Dict[str, int]):
+            channel_config: Dict[str, int],):
         self.player = player
         self.channel_config = channel_config
-        self.led_strip = LedStrip(led_config=led_config, channels=channel_config)
         self.hall = {k: DigitalInputDevice(pin=v, pull_up=True) for k, v in hall_config.items()}
+
 
     def __existing_hall_on(self, channel: int, instrument: str) -> Callable:
         def action():
             self.player.active_channels[channel] = True
-            self.led_strip.positive_feedback_on(instrument=instrument)
+            ser.write(f'(led,{instrument},1,verde)')
         return action
 
     def __existing_hall_off(self, channel: int, instrument: str) -> Callable:
         def action():
             self.player.active_channels[channel] = False
-            self.led_strip.feedback_off(instrument=instrument)
+            ser.write(f'(led,{instrument},0,verde)')
         return action
 
     def __non_existing_hall_on(self, instrument: str) -> Callable:
         def action():
-            self.led_strip.negative_feedback_on(instrument=instrument)
+            ser.write(f'(led,{instrument},1,rosso)')
         return action
 
     def __non_existing_hall_off(self, instrument: str) -> Callable:
         def action():
-            self.led_strip.feedback_off(instrument=instrument)
+            ser.write(f'(led,{instrument},0,rosso)')
         return action
 
     def hook_sensors(self) -> None:
