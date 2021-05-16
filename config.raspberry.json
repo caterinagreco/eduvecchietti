@@ -28,7 +28,7 @@
   "encoder": {
     "clk": 17,
     "dt": 18,
-    "max_steps": 21
+    "max_steps": 20
   },
   "button": 24,
   "synth": {
