@@ -1,8 +1,9 @@
 from typing import List
-
+import serial
 from mido import MidiFile
 
 from game.synth import Synth
+ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 
 
 class Player:
@@ -34,4 +35,5 @@ class Player:
             remaining_demo_time -= message.time
             if remaining_demo_time <= 0:
                 self.synth.reset()
+                ser.write('(animazione,start)'.encode())
                 break
