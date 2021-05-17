@@ -22,23 +22,23 @@ class Dashboard:
     def __existing_hall_on(self, channel: int, instrument: str) -> Callable:
         def action():
             self.player.active_channels[channel] = True
-            ser.write(f'(led,{instrument},1,verde)')
+            ser.write(f'(led,{instrument},1,verde)'.encode())
         return action
 
     def __existing_hall_off(self, channel: int, instrument: str) -> Callable:
         def action():
             self.player.active_channels[channel] = False
-            ser.write(f'(led,{instrument},0,verde)')
+            ser.write(f'(led,{instrument},0,verde)'.encode())
         return action
 
     def __non_existing_hall_on(self, instrument: str) -> Callable:
         def action():
-            ser.write(f'(led,{instrument},1,rosso)')
+            ser.write(f'(led,{instrument},1,rosso)'.encode())
         return action
 
     def __non_existing_hall_off(self, instrument: str) -> Callable:
         def action():
-            ser.write(f'(led,{instrument},0,rosso)')
+            ser.write(f'(led,{instrument},0,rosso)'.encode())
         return action
 
     def hook_sensors(self) -> None:
