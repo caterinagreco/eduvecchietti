@@ -14,6 +14,7 @@ if __name__ == "__main__":
         config = json.load(f)
     game = Game(config=config)
     start_button = Button(config["button"], pull_up=False)
-    start_button.wait_for_release()
-    game.configure()
-    game.start()
+    for _ in range(30):
+        start_button.wait_for_release()
+        game.configure()
+        game.start()
