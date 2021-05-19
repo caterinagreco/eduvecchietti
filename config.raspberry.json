@@ -26,8 +26,9 @@
     "3": ["midi/americano.mid"]
   },
   "encoder": {
-    "CLK": 17,
-    "DT": 18
+    "clk": 17,
+    "dt": 18,
+    "max_steps": 20
   },
   "button": 24,
   "synth": {

@@ -2,6 +2,7 @@ from typing import Dict
 from random import choice
 
 from mido import MidiFile
+from gpiozero import RotaryEncoder
 
 from game.player import Player
 from game.synth import Synth
@@ -13,9 +14,18 @@ class Game:
     def __init__(self, config: Dict):
         self.config = config
         self.is_configured = False
+        self.level_encoder = RotaryEncoder(
+            a=config["encoder"]["clk"],
+            b=config["encoder"]["dt"],
+            max_steps=config["encoder"]["max_steps"],
+        )
 
     def __get_diff_level(self) -> str:
-        return "2"
+        levels = list(self.config["songs_by_level"].keys())
+        max_steps = self.config["encoder"]["max_steps"] + 1
+        step = self.level_encoder.steps
+        level_index = int(step * len(levels) / max_steps)
+        return levels[level_index]
 
     def configure(self) -> None:
         self.synth = Synth(soundfont=self.config["synth"]["soundfont"], driver=self.config["synth"]["driver"])

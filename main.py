@@ -1,5 +1,6 @@
 import json
 from argparse import ArgumentParser
+from gpiozero import Button
 import serial
 from game.game import Game
 
@@ -12,5 +13,7 @@ if __name__ == "__main__":
     with open(args.config, 'r') as f:
         config = json.load(f)
     game = Game(config=config)
+    start_button = Button(config["button"], pull_up=False)
+    start_button.wait_for_release()
     game.configure()
     game.start()
