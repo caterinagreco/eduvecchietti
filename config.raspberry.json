@@ -22,7 +22,7 @@
   },
   "songs_by_level": {
     "1": ["midi/nel_blu_dipinto_di_blu.mid"],
-    "2": ["midi/fly_me_to_the_moon.mid", "midi/azzurro.mid"],
+    "2": ["midi/fly_me_to_the_moon_VOLUME.mid", "midi/azzurro.mid"],
     "3": ["midi/americano.mid"]
   },
   "encoder": {
