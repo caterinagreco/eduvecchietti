@@ -5,6 +5,7 @@ from mido import MidiFile
 from gpiozero import RotaryEncoder
 
 from game.player import Player
+from game.serial_communication import SerialCommunication
 from game.synth import Synth
 from game.dashboard import Dashboard
 
@@ -19,6 +20,8 @@ class Game:
             b=config["encoder"]["dt"],
             max_steps=config["encoder"]["max_steps"],
         )
+        self.serial = SerialCommunication()
+        self.serial.animation_do('gameon')
 
     def __get_diff_level(self) -> str:
         levels = list(self.config["songs_by_level"].keys())
@@ -35,6 +38,7 @@ class Game:
             player=self.player,
             hall_config=self.config["hall"],
             channel_config=self.config["channel"],
+            serial=self.serial,
         )
         self.is_configured = True
 
@@ -43,4 +47,7 @@ class Game:
             self.configure()
         self.player.play_demo()
         self.dashboard.hook_sensors()
+        self.serial.animation_do('start')
         self.player.play()
+        self.serial.animation_do('end')
+

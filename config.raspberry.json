@@ -1,11 +1,11 @@
 {
   "hall": {
-    "bass": 5,
-    "piano": 6,
-    "string_ensamble": 16,
-    "brass_section": 22,
-    "woods": 26,
-    "battery": 27
+    "bass": 26,
+    "piano": 16,
+    "string_ensamble": 6,
+    "brass_section": 5,
+    "woods": 22,
+    "drums": 27
   },
   "channel": {
     "bass": 0,
@@ -13,7 +13,7 @@
     "string_ensamble": 3,
     "brass_section": 4,
     "woods": 5,
-    "battery": 9
+    "drums": 9
   },
   "led_strip": {
     "pin": 20,

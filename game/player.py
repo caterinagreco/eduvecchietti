@@ -1,9 +1,7 @@
 from typing import List
-import serial
 from mido import MidiFile
 
 from game.synth import Synth
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 
 
 class Player:
@@ -12,8 +10,9 @@ class Player:
         self.synth = synth
         self.song = song
         self.active_channels = [False] * 16
+        self.existing_channels = self.__get_existing_channels()
 
-    def get_existing_channels(self) -> List[bool]:
+    def __get_existing_channels(self) -> List[bool]:
         """Computes the channels used by the player's MIDI File
 
         :return: The channels present in the player's MIDI File.
@@ -35,5 +34,4 @@ class Player:
             remaining_demo_time -= message.time
             if remaining_demo_time <= 0:
                 self.synth.reset()
-                ser.write('(animazione,start)'.encode())
                 break
