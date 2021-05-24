@@ -21,9 +21,9 @@
     "brightness": 0.8
   },
   "songs_by_level": {
-    "1": ["midi/nel_blu_dipinto_di_blu.mid"],
-    "2": ["midi/fly_me_to_the_moon_VOLUME.mid", "midi/azzurro.mid"],
-    "3": ["midi/americano.mid"]
+    "1": ["midi/nel_blu_dipinto_di_blu.mid", "midi/cheek_to_cheek.mid"],
+    "2": ["midi/fly_me_to_the_moon.mid", "midi/azzurro.mid"],
+    "3": ["midi/americano.mid", "midi/il_cielo_in_una_stanza.mid"]
   },
   "encoder": {
     "clk": 17,
