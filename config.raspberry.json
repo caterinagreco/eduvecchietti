@@ -15,11 +15,6 @@
     "woods": 5,
     "drums": 9
   },
-  "led_strip": {
-    "pin": 20,
-    "n": 36,
-    "brightness": 0.8
-  },
   "songs_by_level": {
     "1": ["midi/nel_blu_dipinto_di_blu.mid", "midi/cheek_to_cheek.mid"],
     "2": ["midi/fly_me_to_the_moon.mid", "midi/azzurro.mid"],
