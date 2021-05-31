@@ -1,4 +1,5 @@
 from serial import Serial
+from serial.serialutil import SerialException
 
 
 class SerialCommunication:
@@ -9,7 +10,7 @@ class SerialCommunication:
         while ser is None:
             try:
                 ser = Serial(f'/dev/ttyACM{port}', 9600, timeout=1)
-            except FileNotFoundError as e:
+            except (FileNotFoundError, SerialException) as e:
                 if port < 10:
                     port += 1
                 else:
