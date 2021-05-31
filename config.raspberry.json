@@ -1,19 +1,19 @@
 {
   "hall": {
-    "bass": 26,
-    "piano": 16,
-    "string_ensamble": 6,
-    "brass_section": 5,
-    "woods": 22,
-    "drums": 27
+    "bass": 27,
+    "piano": 22,
+    "string_ensamble": 5,
+    "brass_section": 6,
+    "woods": 16,
+    "drums": 26
   },
   "channel": {
-    "bass": 0,
-    "piano": 1,
-    "string_ensamble": 3,
-    "brass_section": 4,
-    "woods": 5,
-    "drums": 9
+    "bass": 9,
+    "piano": 5,
+    "string_ensamble": 4,
+    "brass_section": 3,
+    "woods": 1,
+    "drums": 0
   },
   "songs_by_level": {
     "1": ["midi/nel_blu_dipinto_di_blu.mid", "midi/cheek_to_cheek.mid"],
