@@ -1,7 +1,8 @@
-
-
+#define FRAMES_PER_SECOND  120
 #define NUM_LEDS 36
 #define DATA_PIN 6
+
+FASTLED_USING_NAMESPACE
 
 const char strumenti[][20] = {
   "bass",
@@ -9,18 +10,15 @@ const char strumenti[][20] = {
   "string_ensamble",
   "brass_section",
   "woods",
-  "battery"
+  "drums"
 };
-
-
 
 CRGB leds[NUM_LEDS];
 
 void initNeoPixel() {
   FastLED.addLeds<WS2812, DATA_PIN, GRB>(leds, NUM_LEDS);
-  FastLED.setBrightness(84);
+  FastLED.setBrightness(150);
 }
-
 
 void ledRefresh()
 {
@@ -47,7 +45,7 @@ void aggiornaLED()
   int l;
   strumento = trovaStrumento(matrice[1]);
   if (strumento >= 0) {
-    if (strcmp(matrice[3], "verde") == 0) {
+    if (strcmp(matrice[3], "green") == 0) {
       if (strcmp(matrice[2], "1") == 0) { // accendi il verde
         for (l = 0; l < 6; l++) {
           leds[l + strumento * 6] = CRGB::Green;
@@ -58,8 +56,8 @@ void aggiornaLED()
         }
       }
     }
-    if (strcmp(matrice[3], "rosso") == 0) {
-      if (strcmp(matrice[2], "1") == 0) { // accendi il verde
+    if (strcmp(matrice[3], "red") == 0) {
+      if (strcmp(matrice[2], "1") == 0) { // accendi il rosso
         for (l = 0; l < 6; l++) {
           leds[l + strumento * 6] = CRGB::Red;
         }
@@ -79,10 +77,12 @@ void fadeall() {
 }
 
 
-void accensione() {
-  FastLED.setBrightness(84);
+void victory() { // la funzione va avanti all'infinito (richiamata dal loop) finchè non arriva il messaggio (animation,end)
+
+  int durata = 1500;
+  FastLED.setBrightness(150);
   int k = 0;
-  for (k = 0; k < 4; k++) {
+
     static uint8_t hue = 0;
     // First slide the led in one direction
     for (int i = 0; i < NUM_LEDS; i++) {
@@ -96,7 +96,6 @@ void accensione() {
       // Wait a little bit before we loop around and do it again
       delay(10);
     }
-    Serial.print("x");
 
     // Now go in the other direction.
     for (int i = (NUM_LEDS) - 1; i >= 0; i--) {
@@ -110,58 +109,104 @@ void accensione() {
       // Wait a little bit before we loop around and do it again
       delay(10);
     }
-  }
-  FastLED.clear();  // clear all pixel data
-  FastLED.show();
+
 }
 
+
+
+
 void start() {
- int i=0;
+  int i = 0;
+  int durata = 100;
+  
   fill_solid( leds, NUM_LEDS, CRGB::Red);
   FastLED.setBrightness(0);
   FastLED.show();
   fade_in();
-  delay(700);
+  delay(500);
   fade_out();
   FastLED.clear();
   FastLED.show();
-  delay(700);
-  
+  delay(500);
+
   fill_solid( leds, NUM_LEDS, CRGB::Yellow);
   FastLED.setBrightness(0);
   FastLED.show();
   fade_in();
-  delay(700);
+  delay(500);
   fade_out();
   FastLED.clear();
   FastLED.show();
-  delay(700);
-  
-  for (i = 0; i< 3; i++) {
-    fill_solid( leds, NUM_LEDS, CRGB::Green);
-    FastLED.setBrightness(0);
+  delay(500);
+
+  for (i = 0; i < 3; i++) {
+    green_light(durata);
+  }
+}
+
+void fade_in() {
+  int k = 0;
+  for (k = 0; k < 130; k++) {
+    FastLED.setBrightness(k);
     FastLED.show();
-   fade_in();
-  delay(200);
+  }
+}
+
+void fade_out() {
+  int  k = 0;
+  for (k = 130; k > 0; k--) {
+    FastLED.setBrightness(k);
+    FastLED.show();
+  }
+}
+
+uint8_t gHue = 0; // rotating "base color" used by many of the patterns
+
+void gameOn() {
+  FastLED.setBrightness(150);
+  int i;
+  int durata = 1500;
+  long int current_millis = millis();
+
+  while (millis() - current_millis < 5000) { //timer
+    Serial.println(millis() - current_millis);
+    // a colored dot sweeping back and forth, with fading trails
+    fadeToBlackBy( leds, NUM_LEDS, 20);
+    int pos = beatsin16( 13, 0, NUM_LEDS );
+    leds[pos] += CHSV( gHue, 255, 192);
+    // send the 'leds' array out to the actual LED strip
+    FastLED.show();
+    // insert a delay to keep the framerate modest
+    FastLED.delay(1000 / FRAMES_PER_SECOND);
+
+    // do some periodic updates
+    EVERY_N_MILLISECONDS( 20 ) {
+      gHue++;  // slowly cycle the "base color" through the rainbow
+    }
+  }
+  current_millis = 0;
   fade_out();
-    FastLED.clear();
-    FastLED.show();
-    delay(200);
-  }
+  green_light(durata);
+
 }
 
-void fade_in(){
- int k=0;
-  for(k=0;k<85;k++){
-  FastLED.setBrightness(k);
+void endGame(){
+  fade_out();
+  FastLED.clear();
   FastLED.show();
-  }
 }
 
-void fade_out(){
-int  k=0;
-  for(k=85;k>0;k--){
-  FastLED.setBrightness(k);
+void green_light(int durata) {
+
+  fill_solid( leds, NUM_LEDS, CRGB::Green);
+  FastLED.setBrightness(0);
   FastLED.show();
-  }
-  }
+  fade_in();
+  delay(durata);
+  fade_out();
+  FastLED.clear();
+  FastLED.show();
+  delay(durata);
+  FastLED.setBrightness(150);
+
+}

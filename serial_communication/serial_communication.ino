@@ -1,3 +1,5 @@
+
+
 #include <VarSpeedServo.h>
 
 #include <FastLED.h>
@@ -8,6 +10,7 @@
 #define STOP_VALUE ')'
 #define SEPARATOR ','
 
+int testVictory;
 
 
 VarSpeedServo myservo_coda; //create servo object to control a servo
@@ -18,12 +21,15 @@ void setup() {
   while (!Serial) {} // wait for serial port to connect. Needed for native USB
   initNeoPixel();
   initServo();
+  testVictory=0;
+
 }
 
 char stringa[100];
 int Index;
 
 void loop() {
+
   int i;
   int num;
   int ser;
@@ -55,6 +61,8 @@ void loop() {
       }
     }
   }
+  if(testVictory!=0)
+    victory();
 }
 
 char matrice[5][20];
@@ -85,19 +93,25 @@ void elabora() {
     aggiornaLED();
   }
 
-  if (strcmp(matrice[0], "motore") == 0) {
-    if (strcmp(matrice[1], "coda") == 0)
-      muoviCoda();
-    if (strcmp(matrice[1], "zampe") == 0)
-      muoviZampe();
+  if (strcmp(matrice[0], "servo") == 0) {
+    if (strcmp(matrice[1], "correct") == 0)
+      servoCorrect();
+    if (strcmp(matrice[1], "victory") == 0)
+      servoVictory();
   }
 
-  if (strcmp(matrice[0], "animazione") == 0) {
-    if (strcmp(matrice[1], "accensione") == 0)
-      accensione();
-      if (strcmp(matrice[1], "start") == 0)
+  if (strcmp(matrice[0], "animation") == 0) {
+    if (strcmp(matrice[1], "gameon") == 0)
+      gameOn();
+    if (strcmp(matrice[1], "victory") == 0)
+      testVictory=1;
+      // victory();
+    if (strcmp(matrice[1], "start") == 0)
       start();
-    //if (strcmp(matrice[1], "end") == 0)
-    //endgame();
+    if (strcmp(matrice[1], "end") == 0) {
+      endGame();
+      testVictory=0;
+    }
+  
   }
 }
