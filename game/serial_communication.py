@@ -25,4 +25,4 @@ class SerialCommunication:
         self.ser.write(f'(animation,{name})'.encode())
 
     def servo_do(self, name: str):
-        self.ser.write(f'servo,{name}'.encode())
+        self.ser.write(f'(servo,{name})'.encode())
