@@ -51,6 +51,11 @@ class Dashboard:
                 self.victory()
         return action
 
+    def reset(self):
+        for instrument in self.hall:
+            self.hall[instrument].when_activated = None
+            self.hall[instrument].when_deactivated = None
+
     def hook_sensors(self) -> None:
         for instrument in self.hall:
             channel = self.channel_config[instrument]

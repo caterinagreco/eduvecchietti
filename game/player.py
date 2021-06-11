@@ -20,6 +20,12 @@ class Player:
         existing_channels = set(msg.channel for msg in self.song if not msg.is_meta)
         return [i in existing_channels for i in range(16)]
 
+    def reset(self, new_song: MidiFile = None):
+        if new_song is not None:
+            self.song = new_song
+            self.existing_channels = self.__get_existing_channels()
+        self.active_channels = [False] * 16
+
     def play(self) -> None:
         print("Playing...")
         for message in self.song.play():

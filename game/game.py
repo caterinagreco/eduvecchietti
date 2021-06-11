@@ -31,16 +31,22 @@ class Game:
         return levels[level_index]
 
     def configure(self) -> None:
-        self.synth = Synth(soundfont=self.config["synth"]["soundfont"], driver=self.config["synth"]["driver"])
-        self.song = MidiFile(filename=choice(self.config["songs_by_level"][self.__get_diff_level()]))
-        self.player = Player(synth=self.synth, song=self.song)
-        self.dashboard = Dashboard(
-            player=self.player,
-            hall_config=self.config["hall"],
-            channel_config=self.config["channel"],
-            serial=self.serial,
-        )
-        self.is_configured = True
+        if self.is_configured:
+            self.synth.reset()
+            self.song = MidiFile(filename=choice(self.config["songs_by_level"][self.__get_diff_level()]))
+            self.dashboard.reset()
+            self.player.reset(new_song=self.song)
+        else:
+            self.synth = Synth(soundfont=self.config["synth"]["soundfont"], driver=self.config["synth"]["driver"])
+            self.song = MidiFile(filename=choice(self.config["songs_by_level"][self.__get_diff_level()]))
+            self.player = Player(synth=self.synth, song=self.song)
+            self.dashboard = Dashboard(
+                player=self.player,
+                hall_config=self.config["hall"],
+                channel_config=self.config["channel"],
+                serial=self.serial,
+            )
+            self.is_configured = True
 
     def start(self) -> None:
         if not self.is_configured:
