@@ -1,3 +1,4 @@
+from time import sleep
 from typing import Dict
 from random import choice
 
@@ -21,6 +22,7 @@ class Game:
             max_steps=config["encoder"]["max_steps"],
         )
         self.serial = SerialCommunication()
+        sleep(2)
         self.serial.animation_do('gameon')
 
     def __get_diff_level(self) -> str:
