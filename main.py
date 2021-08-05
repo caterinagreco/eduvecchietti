@@ -1,3 +1,7 @@
+"""Legge la configurazione fornita da riga di comando,
+crea l'oggetto per la gestione della partita e,
+al momento della pressione del bottone di avvio, avvia il gioco.
+"""
 import json
 from argparse import ArgumentParser
 from gpiozero import Button
