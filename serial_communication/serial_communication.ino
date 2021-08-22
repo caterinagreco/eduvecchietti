@@ -1,10 +1,5 @@
-
-
 #include <VarSpeedServo.h>
-
 #include <FastLED.h>
-
-
 
 #define START_VALUE '('
 #define STOP_VALUE ')'
@@ -12,34 +7,38 @@
 
 int testVictory;
 
+VarSpeedServo myservo_coda;
 
-VarSpeedServo myservo_coda; //create servo object to control a servo
-VarSpeedServo myservo_zampe;
+// setup -> Connessione porta seriale, inizializzazione NeoPixel e Servomotore
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial) {} // wait for serial port to connect. Needed for native USB
+  while (!Serial) {}
   initNeoPixel();
   initServo();
   testVictory=0;
-
 }
 
 char stringa[100];
 int Index;
+
+// loop-> Viene salvata la stringa inviata serialmente da 
+// Raspberry nella variabile "stringa". Viene richiamata la funzione elabora()
+// e viene testata la variabile testVictory. Se testVictorty è diversa da zero
+// viene richiamata la funzione vitctory()
 
 void loop() {
 
   int i;
   int num;
   int ser;
-  num = Serial.available();
+  num = Serial.available(); 
   while (num != 0) {
     num--;
-    ser = Serial.read();
+    ser = Serial.read(); 
     if (ser >= 0) {
-      switch (ser) {
-        case START_VALUE:
+      switch (ser) { 
+        case START_VALUE: 
           Index = 1;
           stringa[0] = START_VALUE;
           break;
@@ -67,7 +66,10 @@ void loop() {
 
 char matrice[5][20];
 
-void elabora() {
+// elabora() -> Scrive in una matrice il messaggio salvato in "stringa". 
+// Scrive nella riga successiva quando legge il carattere SEPARATOR
+
+void elabora() { 
   int i = 0;
   int j = 0;
   int c = 1;
@@ -87,11 +89,14 @@ void elabora() {
   matrice[i][j] = '\0';
   // Serial.println(matrice[i]);
 
+// Aggiornamento dei 36 LED
 
-  if (strcmp(matrice[0], "led") == 0) {
+  if (strcmp(matrice[0], "led") == 0) { 
     //chiama neopixel
     aggiornaLED();
   }
+
+// Richiamate funzioni del Servomotore
 
   if (strcmp(matrice[0], "servo") == 0) {
     if (strcmp(matrice[1], "correct") == 0)
@@ -100,18 +105,18 @@ void elabora() {
       servoVictory();
   }
 
+// Richiamate funzioni delle animazioni
+
   if (strcmp(matrice[0], "animation") == 0) {
     if (strcmp(matrice[1], "gameon") == 0)
-      gameOn();
+      gameOn();     
     if (strcmp(matrice[1], "victory") == 0)
-      testVictory=1;
-      // victory();
+      testVictory=1;     
     if (strcmp(matrice[1], "start") == 0)
-      start();
+      start();    
     if (strcmp(matrice[1], "end") == 0) {
       endGame();
       testVictory=0;
-    }
-  
+    } 
   }
 }
