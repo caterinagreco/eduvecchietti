@@ -13,4 +13,6 @@ The use of cutlery to collect small objects is a Montessori-style activity that 
 
 Music, on the other hand, has the equally relevant purpose of entertaining, involving and promoting socialization.  
 
+![Demo](./demo.gif)
+
 “La Band del Bosco” is a thesis project developed with the support of **Professor Andrea Bonarini** and the prototype of the game was created in collaboration with **AirLab**, Artificial Intelligence and Robotic Lab of the Politecnico di Milano.  
